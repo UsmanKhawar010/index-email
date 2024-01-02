@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Megasight</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico" />
+    
+    <!-- Include FontAwesome library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xrFSWMDiV2c9xZUQaTlQuNQz8DyuwdeR1J4Kw1ofOuGz6wVnRCYK7vD0BCkSD1tlUwt+1cFjR6at3vK86WIvgQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    
+    <!-- Include Raleway font from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway&display=swap">
+    
+    <!-- Include Roboto font from Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap">
+    
+    <!-- Additional Bootstrap CSS (Choose one based on your preference) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- OR -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">    
+  </head>
+  <style>
+        body {
+            overflow-x: hidden;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            background: white;
+        }
+
+        @keyframes movedown {
+            from {
+                transform: translateY(-20vh);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .navbar {
+            background: rgba(9, 121, 105, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            margin-top: 30px;
+            width: 95%;
+            /* Adjusted for responsiveness */
+            border-radius: 5px;
+            /* Corrected typo */
+            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80px;
+            padding: 0 20px;
+            animation: movedown 1s ease-out forwards;
+        }
+
+        .navbar-brand {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .navbar-nav {
+            margin-right: 10px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+            font-size: 1.1em;
+            transition: color 0.3s;
+            padding: 15px 10px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #e5e5e5;
+        }
+
+        .navbar-toggler-icon {
+            background: #ffffff;
+        }
+
+        /* Add this to your existing styles or create a new section for carousel styles */
+
+        @keyframes slogan-move-up {
+            from {
+                opacity: 0;
+                transform: translateY(50px) translateX(-50%);
+
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(-50px) translateX(-50%);
+            }
+        }
+
+        .carousel-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Adjust the last value (0.5) for the desired level of opacity */
+        }
+
+        .slogan-container {
+            position: absolute;
+            top: 36%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            animation: slogan-move-up 1s ease-out forwards;
+            margin-bottom: -20px;
+        }
+
+        .slogan {
+            font-size: 4em;
+            font-weight: bolder;
+            color: rgb(10, 228, 178);
+            /* Add any additional styles for your slogan */
+        }
+
+
+
+
+        .carousel-services-card-container {
+            background-color: white;
+            padding: 20px;
+            height: 200px;
+
+            margin-top: -270px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .carousel-services-card {
+            padding: 0;
+            margin-top: -80px;
+            /* Remove or adjust the negative margin */
+            /* Add margin between cards */
+            margin-right: 62px;
+            height: 170px;
+            border: 1.3px solid white;
+            border-radius: 17px;
+            align-items: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+
+
+        .carousel-services-card:hover .card-img-top,
+        .carousel-services-card:hover .card-title {
+            color: rgb(10, 228, 178);
+            /* Change text color on hover */
+        }
+
+        .carousel-services-card:hover {
+
+            border-color: rgb(10, 228, 178);
+            /* Change border color on hover */
+        }
+
+        .carousel-services-card .card-img-top {
+            margin-top: 30px;
+            width: 60px;
+        }
+
+        .carousel-services-card .card-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: -10px;
+        }
+
+        /* Ensure equal spacing between cards */
+        .carousel-services-card .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .white-image {
+            filter: brightness(0) invert(1);
+        }
+
+        .intro-megasight-container {
+            height: 300px;
+         
+            width: 100%;
+            
+            background-color: transparent;
+        }
+        .intro-megasight-container-heading {
+            font-size: 1.9em;
+            font-weight: bolder;
+            margin-top:10px;
+            color: rgb(8, 209, 118);
+            margin-left:30px;
+            /* Add any additional styles for your slogan */
+        }
+        .intro-megasight-container-text {
+            /* Add styles for your text here */
+            font-size: 1.4em;
+            margin-left:30px;
+            font-weight: 400;
+            margin-top:5px;
+            text-justify: auto;
+            color: #333;
+        }
+
+        .intro-megasight-container-button {
+            /* Add styles for your button here */
+            font-size: 18px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #08223d;
+            border: 1px solid #007bff;
+            padding: 10px 40px;
+            margin-left:80px;
+            margin-top:100px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            animation: moveUpDownIntroButton 0.8s infinite alternate ease-in-out;
+        }
+        .intro-megasight-container-button:hover {
+          background-color: #08223d;
+          color: #fff;
+          transform: scale(1.1);
+        }
+
+        @keyframes moveUpDownIntroButton {
+        from {
+            transform: translateY(15);
+        }
+        to {
+            transform: translateY(-15px); /* Adjust the distance as needed */
+        }
+        }
+
+        /* Ensure equal margin on both sides of the container */
+
+
+        @keyframes custom-card-move-up {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .our-edge-section {
+            margin-top: 100px;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: normal;
+            /* Reset to normal since "Roboto Black" is already very bold */
+            color: #f8f8f8;
+            font-size: 1em;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        
+
+        .our-edge-section-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+        
+        }
+
+        .our-edge-section-container {
+            position: relative;
+            background-image: url('why_us.jpg'); /* Replace 'your_background_image.jpg' with the path to your background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 700px; /* Adjust the height as needed */
+            width: 100%;
+            padding-top: 20px;
+        }
+
+
+
+        .our-edge-section-card {
+            margin-top: -4px;
+            background-color: transparent;
+            /* Set background color to white */
+            height: 200px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+            padding-top: 20px;
+            border: 1.2px solid white;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .our-edge-section-heading {
+            text-align: center;
+            margin-top:30px;
+            font-weight:600;
+            font-size: 0.5em;
+            color: white !important;
+            font-size: 2em;
+            font-weight: bolder;
+            
+        }
+
+        .our-edge-section-card-heading {
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 500;
+            background: linear-gradient(90deg, rgb(255, 255, 255), #939292);
+            /* Adjust the colors as needed */
+            -webkit-background-clip: text;
+        }
+        .our-edge-section-card-text {
+            text-align: center;
+            color: white;
+            font-weight:300;
+            font-size: 1em;
+            font-weight: normal;
+            
+        }
+
+
+
+        .our-edge-section-card:hover {
+        transform: scale(1.05);
+        }
+
+         /* Style for smaller and curved images */
+         .carousel-item-our-service img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto; /* Center the image */
+        }
+
+        /* Custom dimensions for the card */
+        .card-our-service {
+            width: 300px; /* Set your custom width */
+            height: 200px; /* Set your custom height */
+            align-items: center;
+        }
+
+        /* Style for the heading "Our Services" */
+        .heading-our-service {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-left: -30px;
+        }
+
+        /* Style for the heading of the card */
+        .card-heading-our-service {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Style for the text in the card */
+        .card-text-our-service {
+            font-size: 16px;
+        }
+        .services-heading {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            color: black;
+        }
+
+        .services-heading::after {
+            content: "";
+            background-color: #218838;
+            height: 8px;
+            width: 120px;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .custom-card .card-heading {
+            font-weight: bold;
+            text-align: center;
+        }
+       
+
+        .services-background-container {
+          background-color: #eae9e3;
+          height: 1300px;
+          min-height: 500px;
+          width: 100%;
+          padding-top: 80px;
+        }
+        .our-services-section-heading {
+            text-align: center;
+ 
+            font-weight:600;
+            font-size: 0.5em;
+            color: white !important;
+            font-size: 2em;
+            font-weight: bolder;
+            
+        }
+        .custom-card {
+            background-color: transparent;
+            border: 0.5px solid rgb(9, 199, 155);
+            border-radius: 10px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .custom-card:hover {
+            background: rgba(2, 3, 28, 0.9);
+            color: white;
+        }
+
+        .custom-card .card-heading,
+        .custom-card .card-text {
+            color: black;
+        }
+
+        .custom-card:hover .card-heading,
+        .custom-card:hover .card-text {
+            color: white;
+        }
+
+
+        .custom-footer-container {
+          background-color: #000000; /* Black background color */
+          color: #ffffff; /* White text color */
+          text-align: center;
+        }
+        .footer-container {
+          width: 100%;
+          padding-top:0px;
+        }
+        #swip-up-onscroll {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: opacity 0.8s, transform 0.8s;
+        }
+        #our-edge-heading {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.8s, transform 0.8s;
+        }
+        #our-founder-card-movement {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: opacity 0.8s, transform 0.8s;
+        }
+        #our-founder-card-movement-2line {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: opacity 0.8s, transform 0.8s;
+        }
+        #our-founder-card-movement-3line {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .modal-content {
+          background: transparent;
+          border: none;
+          box-shadow: none;
+        }
+
+
+
+        .form-container {
+          padding: 20px;
+        }
+
+        .form-control {
+          background: white
+          /* Set the background color with transparency */
+          border: 1px solid #ddd;
+          /* Add a border for better visibility */
+          border-radius: 5px;
+          /* Optional: Add border-radius for rounded corners */
+          margin-bottom: 10px;
+        }
+
+        /* Apply the same styles to textarea */
+        .form-control textarea {
+          background: rgba(255, 255, 255, 0.5);
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          margin-bottom: 10px;
+        }
+
+        .form-modal-title {
+          color: #fff;
+          /* Set text color to white */
+          font-weight: bold;
+          /* Make the text bold */
+        }
+
+        
+        @media only screen and (max-width: 600px) {
+          .navbar {
+            width: 100%;
+            /* Adjust width to 100% for smaller screens */
+            border-radius: 0;
+            /* Remove border-radius for a more standard look */
+            height: auto;
+            /* Auto height for mobile devices */
+            padding: 10px;
+            /* Adjust padding for better spacing on smaller screens */
+          }
+
+          .navbar-brand {
+            margin-right: 0;
+            /* Reset margin for smaller screens */
+            margin-left: 0;
+            /* Reset margin for smaller screens */
+            font-size: 1.5em;
+            /* Adjust font size for smaller screens */
+          }
+
+          .navbar-toggler-icon {
+            background: #ffffff;
+          }
+
+          .navbar-nav {
+            margin-right: 0;
+            /* Reset margin for smaller screens */
+          }
+
+          .navbar-nav .nav-link {
+            font-size: 1em;
+            /* Adjust font size for smaller screens */
+            padding: 10px;
+            /* Adjust padding for better spacing on smaller screens */
+          }
+          .carousel-item::before {
+            background: rgba(0, 0, 0, 0.8); /* Adjust opacity for even smaller screens */
+            width: 100%;
+            border-radius: 0;
+          }
+
+          .slogan {
+            font-size: 2em; /* Adjust font size for even smaller screens */
+          }
+
+
+          .intro-megasight-container {
+            height: 400px;
+          }
+
+          .intro-megasight-container-heading {
+            font-size: 1em;
+          }
+
+          .intro-megasight-container-text {
+            font-size: 0.9em;
+          }
+
+          .intro-megasight-container-button {
+            font-size: 12px;
+            
+            align-items: center;
+            left:50%;
+          }
+          .our-edge-section-container {
+              height: 1300px;
+            }
+
+            .our-edge-section-card {
+              height: 230px;
+            }
+            .services-background-container {
+              height: 1820px;
+            }
+
+      }
+ 
+ </style>
+  </head>
+
+  <body>
+
+
+    <div class="modal fade" id="contactModal" tabindex="-1"
+      aria-labelledby="contactModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-slidein">
+        <div class="modal-content form-modal-content">
+          <div class="modal-header textarea">
+            <h5 class="modal-title form-modal-title" id="contactModalLabel">Contact
+              Us</h5>
+
+          </div>
+          <div class="modal-body">
+            <!-- Form container -->
+            <div class="form-container">
+              <!-- Your contact form -->
+              <form action="/submit" method="post">
+                <label for="email">Sender Email:</label>
+                <input type="email" name="email" required /><br />
+          
+                <label for="receiver_email">Receiver Email:</label>
+                <input type="email" name="receiver_email" required /><br />
+          
+                <label for="subject">Subject:</label>
+                <input type="text" name="subject" required /><br />
+          
+                <label for="message">Message:</label>
+                <textarea name="message" rows="4" required></textarea><br />
+          
+                <input type="submit" value="Submit" />
+              </form>
+
+              <!-- End contact form -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  <div id="imageCarousel" class="carousel">
+    <div class="carousel-inner">
+      <!-- Image slide -->
+      <div class="carousel-item active">
+        <img src="/index_page_new/black_white_meeting.jpg"
+          class="d-block w-100" style="height: 980px;"
+          alt="Slide 1">
+        <!-- Slogan -->
+        <div class="slogan-container">
+          <h3 class="slogan">Elevate Business <br>With
+            MegaSight.Ai </h3>
+          <p
+            style="color: white; font-weight: bolder; font-size: 1.2em;">We
+            meticulously craft and deploy enduring Machine
+            Learning solutions.</p>
+        </div>
+        <!-- Transparent Container -->
+        <!-- Container with Bootstrap Cards -->
+
+      </div>
+      <!-- Add more carousel items as needed -->
+    </div>
+
+    <div class="d-flex align-items-center" style="height: 12vh;">
+      <nav
+        class="navbar navbar-dark navbar-expand-lg fixed-top mx-auto">
+        <div class="container">
+          <a class="navbar-brand" href="#">MegaSight.Ai</a>
+          <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse"
+            id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link active"
+                  aria-current="page"
+                  href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link"
+                  href="{{ url_for('about') }}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#contactModal">Contact
+                  Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- Bootstrap Carousel -->
+  </div>
+
+  <div class="intro-megasight-container">
+    <div class="row" id = "swip-up-onscroll">
+      <!-- Left Column -->
+      <div class="col-md-7">
+        <h3 class="intro-megasight-container-heading">
+          MegaSight.Ai </h3>
+        <p class="intro-megasight-container-text">We
+          deliver dedicated attention and exceptional service,
+          solidifying our position as a leading global
+          provider.
+          We leverage our extensive experience and knowledge,
+          continuously refined and updated, to deliver
+          innovative
+          solutions and best practices</p>
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-md-4">
+        <a href="mailto:hello@megasight.ai"
+          class="btn  intro-megasight-container-button">Start
+          Your
+          Journey With Us!</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="our-edge-section-container container-fluid"
+    >
+    <div>
+      <div class="our-edge-section-heading">
+        <h3
+          style="color: #f8f8f8; display: inline; font-size: 50px; font-weight: bold;">Why
+        </h3>
+        <h3
+          style="color: rgb(10, 228, 178); display: inline; font-size: 50px; font-weight: bold;">MegaSight.Ai<br><br></h3>
+      </div>
+
+    </div>
+
+
+    <div class="row justify-content-center" id="our-edge-heading">
+      <!-- Card 1 -->
+      <div class="col-md-5 mb-4">
+        <div class="card our-edge-section-card">
+          <div class="card-body">
+            <p
+              class="our-edge-section-card-heading">Collaboration</p>
+            <p class="our-edge-section-card-text">Our expertise
+              thrives on your vision. At MegaSight.Ai, we
+              combine our AI know-how with your unique needs
+              to achieve groundbreaking results, together.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-md-5 mb-4">
+        <div class="card our-edge-section-card">
+          <div class="card-body">
+            <p
+              class="our-edge-section-card-heading">Scalability</p>
+            <p class="our-edge-section-card-text">At
+              MegaSight.Ai, scalability is a driving force
+              behind our software solutions. We understand
+              that businesses and organizations grow, evolve,
+              and face changing demands." with a focus on
+              imagery</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Cards in the Second Row -->
+      <!-- Card 3 -->
+      <div class="col-md-5 mb-4">
+        <div class="card our-edge-section-card">
+          <div class="card-body">
+            <p
+              class="our-edge-section-card-heading">User-centric
+              design</p>
+            <p class="our-edge-section-card-text">Forget
+              complicated tech! We make things clear and easy
+              to use. Together, we use data to design
+              experiences that truly delight.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-md-5 mb-4">
+        <div class="card our-edge-section-card">
+          <div class="card-body">
+            <p class="our-edge-section-card-heading">Continuous
+              improvement</p>
+            <p class="our-edge-section-card-text"> We leverage
+              data to constantly evolve and optimize our
+              operations, delivering unparalleled value</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="services-background-container">
+    <div class="our-services-section-heading">
+      <h3
+        style="color: #000000; display: inline; font-size: 50px; font-weight: bold;">Our
+      </h3>
+      <h3
+        style="color: rgb(9, 199, 155); display: inline; font-size: 50px; font-weight: bold;">Services<br><br></h3>
+    </div>
+
+
+    <div class="container mt-5">
+      <!-- Larger Screen Content -->
+      <div class="d-none d-md-block"  id = "our-founder-card-movement">
+        <div class="row mt-3 justify-content-between">
+          <!-- First Card and Image -->
+          <div class="col-md-4 mb-4 d-flex align-items-left"
+            style="margin-left: 30px;">
+            <div class="card text-start border-0 text-justify bg-transparent"
+              style="margin-left: 30px;">
+              <div class="card-body custom-card text-end text-justify">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Website Development
+                </h5>
+                <p class="card-text text-justify">
+                  We develop custom websites that help your business do more.
+                  Our expert web development teams build websites that make
+                  business processes more efficient, improve customer
+                  experience, and generate more profit for our clients.
+                </p>
+              </div>
+            </div>
+            <img
+              src="../megasight-website/static/images/website development.svg"
+              class="img-fluid rounded"
+              alt="Website Logo"
+              style="width: 60px; height: 60px; margin-left: 10px" />
+          </div>
+
+          <!-- Second Image and Card -->
+          <div class="col-md-4 mb-4 d-flex align-items-left"
+            style="margin-right: 35px">
+            <img
+              src="../megasight-website/static/images/machine learning.svg"
+              class="img-fluid rounded"
+              alt="AI Logo"
+              style="width: 60px; height: 60px" />
+            <div
+              class="card text-start border-0 text-justify bg-transparent"
+              style="margin-right: 24px">
+              <div class="card-body custom-card">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Machine Learning and AI
+                </h5>
+                <p class="card-text text-justify">
+                  We develop custom Machine Learning and Deep Learning models
+                  that find trends and predict outcomes. Our clients in
+                  Fintech, Healthcare, Retail, Marketing, and E-commerce swear
+                  by our services.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-none d-md-block"  id = "our-founder-card-movement-2line">
+        <div class="row mt-3 justify-content-between">
+          <!-- First Card and Image -->
+          <div class="col-md-4 mb-4 d-flex align-items-left"
+            style="margin-left: 30px;">
+            <div class="card text-start border-0 text-justify bg-transparent"
+              style="margin-left: 24px;">
+              <div class="card-body custom-card text-end text-justify">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Mobile App Development
+                </h5>
+                <p class="card-text text-justify">
+                  Be sure to have your online business presence on Google App
+                  Store or Apple Store today. With the help of our team, we
+                  deliver scalable and perfectly positioned apps with enhanced
+                  user experience.
+                </p>
+              </div>
+            </div>
+            <img
+              src="../megasight-website/static/images/Mobile_app_Development_Icon.svg"
+              class="img-fluid rounded"
+              alt="Website Logo"
+              style="width: 60px; height: 60px; margin-left: 10px" />
+          </div>
+
+          <!-- Second Image and Card -->
+          <div class="col-md-4 mb-4 d-flex align-items-left"
+            style="margin-right: 35px">
+            <img
+              src="../megasight-website/static/images/ui_ux_design.png"
+              class="img-fluid rounded"
+              alt="AI Logo"
+              style="width: 60px; height: 60px" />
+            <div
+              class="card text-start border-0 text-justify bg-transparent"
+              style="margin-right: 24px">
+              <div class="card-body custom-card">
+                <h5 class="card-title card-heading font-weight-bold">
+                  UI/UX Design
+                </h5>
+                <p class="card-text text-justify">
+                  We understand the soul of your brand and translate it
+                  into interfaces that captivate users. Beyond stunning visuals,
+                  we design for intuitiveness guiding your customers seamlessly
+                  to their goals</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-none d-md-block"  id = "our-founder-card-movement-3line">
+        <div class="row mt-3 justify-content-between">
+          <!-- First Card and Image -->
+          <div class="col-md-4 mb-4 d-flex align-items-left"
+            style="margin-left: 30px;">
+            <div class="card text-start border-0 text-justify bg-transparent"
+              style="margin-left: 24px;">
+              <div class="card-body custom-card text-end text-justify">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Data Science and Analytics
+                </h5>
+                <p class="card-text text-justify">
+                  Make data-driven decisions with the help of our AI powered
+                  solutions. Our Data Mining tools along with Predictive
+                  Analytics and Data Analysis can help you with your Business
+                  Decisions by providing actionable insights.
+                </p>
+              </div>
+            </div>
+            <img
+              src="../megasight-website/static/images/Data_Science_Icon.svg"
+              class="img-fluid rounded"
+              alt="Website Logo"
+              style="width: 60px; height: 60px; margin-left: 10px" />
+          </div>
+
+          <!-- Second Image and Card -->
+          <div class="col-md-4 mb-4 d-flex align-items-left"
+            style="margin-right: 35px">
+            <img
+              src="../megasight-website/static/images/Hire_Developers_Icon.svg"
+              class="img-fluid rounded"
+              alt="AI Logo"
+              style="width: 60px; height: 60px" />
+            <div
+              class="card text-start border-0 text-justify bg-transparent"
+              style="margin-right: 30px">
+              <div class="card-body custom-card">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Hire Developers
+                </h5>
+                <p class="card-text text-justify">
+                  Our “can do” attitude developers help you rapidly scale up
+                  your projects or expand your operation. Hire a single
+                  developer or an entire team to complete your project
+                  successfully. Hire great talent and deliver top results.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--End for larger screen-->
+
+      <!-- Smaller Screen Content -->
+      <div class="d-md-none" >
+        <div class="row mt-3 justify-content-between">
+          <!-- First Card and Image -->
+          <div class="col-12 mb-4 d-flex align-items-left">
+            <img
+              src="../megasight-website/static/images/website development.svg"
+              class="img-fluid rounded"
+              alt="AI Logo"
+              style="width: 60px; height: 60px" />
+            <div
+              class="card text-start border-0 text-justify bg-transparent"
+              style="margin-left: 10px">
+              <div class="card-body custom-card">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Website Development
+                </h5>
+                <p class="card-text text-justify">
+                  We develop custom websites that help your business do more.
+                  Our expert web development teams build websites that make
+                  business processes more efficient, improve customer
+                  experience, and generate more profit for our clients.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Image and Card -->
+          <div class="col-12 mb-4 d-flex align-items-left">
+            <img
+              src="../megasight-website/static/images/machine learning.svg"
+              class="img-fluid rounded"
+              alt="AI Logo"
+              style="width: 60px; height: 60px" />
+            <div
+              class="card text-start border-0 text-justify bg-transparent"
+              style="margin-left: 10px">
+              <div class="card-body custom-card">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Machine Learning and AI
+                </h5>
+                <p class="card-text text-justify">
+                  We develop custom Machine Learning and Deep Learning models
+                  that find trends and predict outcomes. Our clients in
+                  Fintech, Healthcare, Retail, Marketing, and E-commerce swear
+                  by our services.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-md-none">
+        <div class="row mt-3 justify-content-between">
+          <!-- First Card and Image -->
+          <div class="col-12 mb-4 d-flex align-items-left">
+            <img
+              src="../megasight-website/static/images/Mobile_app_Development_Icon.svg"
+              class="img-fluid rounded"
+              alt="AI Logo"
+              style="width: 60px; height: 60px" />
+            <div
+              class="card text-start border-0 text-justify bg-transparent"
+              style="margin-left: 10px">
+              <div class="card-body custom-card">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Mobile App Development
+                </h5>
+                <p class="card-text text-justify">
+                  Be sure to have your online business presence on Google App
+                  Store or Apple Store today. With the help of our team, we
+                  deliver scalable and perfectly positioned apps with enhanced
+                  user experience.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Image and Card -->
+          <div class="col-12 mb-4 d-flex align-items-left">
+            <img
+              src="../megasight-website/static/images/ui_ux_design.png"
+              class="img-fluid rounded"
+              alt="AI Logo"
+              style="width: 60px; height: 60px" />
+            <div
+              class="card text-start border-0 text-justify bg-transparent"
+              style="margin-left: 10px">
+              <div class="card-body custom-card">
+                <h5 class="card-title card-heading font-weight-bold">
+                  UI/UX Design
+                </h5>
+                <p class="card-text text-justify">
+                  We understand the soul of your brand and translate it into
+                  interfaces
+                  that captivate users. Beyond stunning visuals,
+                  we design for intuitiveness guiding your customers seamlessly
+                  to their goals
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-md-none">
+        <div class="row mt-3 justify-content-between">
+          <!-- First Card and Image -->
+          <div class="col-12 mb-4 d-flex align-items-left">
+            <img
+              src="../megasight-website/static/images/Data_Science_Icon.svg"
+              class="img-fluid rounded"
+              alt="AI Logo"
+              style="width: 60px; height: 60px" />
+            <div
+              class="card text-start border-0 text-justify bg-transparent"
+              style="margin-left: 10px">
+              <div class="card-body custom-card">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Data Science and Analytics
+                </h5>
+                <p class="card-text text-justify">
+                  Make data-driven decisions with the help of our AI powered
+                  solutions. Our Data Mining tools along with Predictive
+                  Analytics and Data Analysis can help you with your Business
+                  Decisions by providing actionable insights.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Image and Card -->
+          <div class="col-12 mb-4 d-flex align-items-left">
+            <img
+              src="../megasight-website/static/images/Hire_Developers_Icon.svg"
+              class="img-fluid rounded"
+              alt="AI Logo"
+              style="width: 60px; height: 60px" />
+            <div
+              class="card text-start border-0 text-justify bg-transparent"
+              style="margin-left: 10px">
+              <div class="card-body custom-card">
+                <h5 class="card-title card-heading font-weight-bold">
+                  Hire Developers
+                </h5>
+                <p class="card-text text-justify">
+                  Our “can do” attitude developers help you rapidly scale up
+                  your projects or expand your operation. Hire a single
+                  developer or an entire team to complete your project
+                  successfully. Hire great talent and deliver top results.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="footer-container ">
+
+    <!-- Footer -->
+    <footer
+      class="text-center text-lg-start text-white"
+      style="background-color: #1c2331">
+      <!-- Section: Social media -->
+      <section
+        class="d-flex justify-content-between p-4"
+        style="background-color: rgb(7, 159, 124)">
+        <!-- Left -->
+        <div class="me-5">
+          <span>Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+
+          <a href="https://www.linkedin.com/in/aliakber79/"
+            class="text-white me-4">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=923349763732"
+            class="text-white me-4">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:hello@megasight.ai" class="text-white me-4">
+            <i class="far fa-envelope"></i>
+          </a>
+
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section class>
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold">MegaSight.Ai</h6>
+              <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                We meticulously craft and deploy enduring Machine Learning
+                solutions.
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Services</h6>
+              <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                <a href class="text-white" style="font-weight: bold;">Web
+                  Development</a>
+              </p>
+              <p>
+                <a href class="text-white" style="font-weight: bold;">Machine
+                  Learning</a>
+              </p>
+              <p>
+                <a href class="text-white" style="font-weight: bold;">Data
+                  Science</a>
+              </p>
+              <p>
+                <a href class="text-white" style="font-weight: bold;">Mobile
+                  App Development</a>
+              </p>
+
+              <p>
+                <a href class="text-white" style="font-weight: bold;">UI/UX
+                  Design</a>
+              </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Quick Links</h6>
+              <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <p>
+                <a href="{{ url_for('about') }}" class="text-white">About
+                  Us</a>
+              </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Contact</h6>
+              <hr
+                class="mb-4 mt-0 d-inline-block mx-auto"
+                style="width: 60px; background-color: #7c4dff; height: 2px" />
+              <!--<p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>-->
+              <p><i class="fas fa-envelope mr-3"></i> hello@megasight.ai</p>
+              <!--<p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+              <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p> -->
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div
+        class="text-center p-3"
+        style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2023 Copyright:
+        <a class="text-white" href="https://megasight.ai/">MegaSight.Ai</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+  </div>
+
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous">
+      </script>
+
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Target elements
+        const headingSection = document.getElementById('swip-up-onscroll');
+        const upperPillarSection = document.getElementById('our-edge-heading');
+        const additionalElement = document.getElementById('our-founder-card-movement');
+        const additionalElement2 = document.getElementById('our-founder-card-movement-2line');
+        const additionalElement3 = document.getElementById('our-founder-card-movement-3line');
+    
+        // Cards
+        const cardElements = document.querySelectorAll('.our-founders-card-col');
+    
+        // Intersection Observer options
+        const options = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5, // Adjust the threshold as needed
+        };
+    
+        // Intersection Observer callback
+        const callback = (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = 'translateY(0)';
+              observer.unobserve(entry.target);
+            }
+          });
+        };
+    
+        // Create Intersection Observer for headingSection
+        const observerHeading = new IntersectionObserver(callback, options);
+        observerHeading.observe(headingSection);
+    
+        // Create Intersection Observer for upperPillarSection
+        const observerUpperPillar = new IntersectionObserver(callback, options);
+        observerUpperPillar.observe(upperPillarSection);
+    
+        // Create Intersection Observer for additionalElement
+        const observerAdditionalElement = new IntersectionObserver(callback, options);
+        observerAdditionalElement.observe(additionalElement);
+    
+        // Create Intersection Observer for additionalElement2
+        const observerAdditionalElement2 = new IntersectionObserver(callback, options);
+        observerAdditionalElement2.observe(additionalElement2);
+    
+        // Create Intersection Observer for additionalElement3
+        const observerAdditionalElement3 = new IntersectionObserver(callback, options);
+        observerAdditionalElement3.observe(additionalElement3);
+    
+        // Create Intersection Observer for each card
+        const observerCards = new IntersectionObserver(callback, options);
+        cardElements.forEach((card) => {
+          observerCards.observe(card);
+        });
+      });
+    </script>
+    
+
+  </body>
+
+</html>
