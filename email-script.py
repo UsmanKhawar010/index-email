@@ -7,10 +7,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/about')
-def about():
-    # Your about page logic here
-    return render_template('templates\index.html')
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 
 @app.route('/submit', methods=['POST'])
 def submit():
