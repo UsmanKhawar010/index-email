@@ -10,7 +10,7 @@ def index():
 @app.route('/about')
 def about():
     # Your about page logic here
-    return render_template('about.html')
+    return render_template('templates\index.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
